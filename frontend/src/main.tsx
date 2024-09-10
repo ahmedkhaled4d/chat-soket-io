@@ -1,26 +1,17 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import { ConfigProvider } from "antd";
-import arEG from "antd/locale/ar_EG";
-
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <ConfigProvider
-      theme={{
-        // algorithm: theme.darkAlgorithm,
-        token: {
-          // Seed Token
-          colorPrimary: "#00b96b",
-          borderRadius: 2,
-
-          // Alias Token
-          colorBgContainer: "#f6ffed",
-        },
-      }}
-      locale={arEG}
-    >
-      <App />
-    </ConfigProvider>
-  </StrictMode>
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+import { store, persistor } from './redux/store.ts';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <PersistGate persistor={persistor}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </PersistGate>
+    ,
+  </React.StrictMode>
 );
