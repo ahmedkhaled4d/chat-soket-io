@@ -1,4 +1,4 @@
-import { Button, Col, Flex, Image, Row, theme, Typography } from 'antd';
+import { Button, Col, Flex,   Row, theme, Typography } from 'antd';
 import { useMediaQuery } from 'react-responsive';
 import {
   PATH_AUTH,
@@ -17,12 +17,10 @@ import {
   EditOutlined,
   FileOutlined,
   FormatPainterOutlined,
-  GithubOutlined,
-  LoginOutlined,
+   LoginOutlined,
   MergeCellsOutlined,
   PieChartOutlined,
-  RocketFilled,
-  TableOutlined,
+   TableOutlined,
 } from '@ant-design/icons';
 import { Card, Container } from '../components';
 import { createElement, CSSProperties } from 'react';
@@ -167,12 +165,7 @@ export const HomePage = () => {
 
   return (
     <div
-      style={{
-        // backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 1) 40%), url('/grid-3d.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '100vh',
-      }}
+      
     >
       <Flex
         vertical
@@ -187,16 +180,7 @@ export const HomePage = () => {
       >
         <Container>
           <Row style={{ alignItems: 'center' }}>
-            <Col lg={12}>
-              <Text
-                style={{
-                  color: colorPrimary,
-                  fontSize: 16,
-                  fontWeight: 700,
-                }}
-              >
-                <RocketFilled /> Kick start your project with
-              </Text>
+            <Col lg={12}>              
               <Title
                 style={{
                   fontSize: isMobile ? 36 : 40,
@@ -204,16 +188,12 @@ export const HomePage = () => {
                   margin: '1.5rem 0',
                 }}
               >
-                A dynamic and versatile multipurpose{' '}
-                <span className="text-highlight">dashboard</span> template built
-                using <span className="text-highlight">React</span>,{' '}
-                <span className="text-highlight">Vite</span>,{' '}
-                <span className="text-highlight">Ant Design</span>, and{' '}
-                <span className="text-highlight">Storybook</span>{' '}
+               Design conversational customer journeys with the WhatsApp Business Platform
+
               </Title>
               <Text style={{ fontSize: 20, marginBottom: '1.5rem' }}>
-                <span className="text-highlight fw-bolder">60+</span> ready made
-                components to use.
+                <span className="text-highlight fw-bolder">2,000+</span> brands worldwide trust WhatsApp powered by Zazu
+
               </Text>
               <Flex
                 gap="middle"
@@ -227,24 +207,15 @@ export const HomePage = () => {
                     size="large"
                     block={isMobile}
                   >
-                    Live preview
+                    Book a demo
                   </Button>
                 </Link>
-                <Link to={PATH_GITHUB.repo}>
-                  <Button
-                    icon={<GithubOutlined />}
-                    type="default"
-                    size="large"
-                    block={isMobile}
-                  >
-                    Give us a star
-                  </Button>
-                </Link>
+             
               </Flex>
             </Col>
             {!isTablet && (
               <Col lg={12}>
-                <Image src="/landing-frame.png" alt="dashboard image snippet" />
+                <img width={400} src="/whatsapp.png" alt="whatsapp" />
               </Col>
             )}
           </Row>
