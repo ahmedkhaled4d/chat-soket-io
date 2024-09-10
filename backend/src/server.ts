@@ -22,15 +22,23 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.get("/send", (req, res, next) => {
+  io.emit("message", "new whatsapp msg");
+  res.send("ok");
+});
+
 // Set up Socket.IO event listeners
 io.on("connection", (socket) => {
   console.log("a user connected");
-
   // Event listener for 'message' event
-  socket.on("message", (msg) => {
+  socket.on("message", (msg, callback) => {
     console.log("message received: ", msg);
+    if (msg === "ahmed") {
+      io.emit("message", "yes i'm here");
+    } else {
+      callback("i'm not ahmed");
+    }
     // Broadcast message to all clients
-    io.emit("message", msg);
   });
 
   // Handle disconnection
@@ -38,7 +46,6 @@ io.on("connection", (socket) => {
     console.log("user disconnected");
   });
 });
-
 // Start the server
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
