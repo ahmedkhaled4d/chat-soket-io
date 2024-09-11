@@ -1,52 +1,23 @@
-import express from "express";
-import http from "http";
-import { Server as SocketIOServer } from "socket.io";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import { server } from "./socket";
 
-// Create an instance of Express
-const app = express();
-const port = 3000;
+dotenv.config();
 
-// Create an HTTP server and pass it to Socket.IO
-const server = http.createServer(app);
-const io = new SocketIOServer(server, {
-  cors: {
-    origin: "*", // Adjust this based on your needs
-  },
-});
+const PORT = process.env.PORT || 3000;
 
-// Middleware (if needed)
-app.use(express.json());
+mongoose
+  .connect(process.env.MONGO_URI as string, {
+    dbName: process.env.MONGO_DB_NAME,
+  })
+  .then(() => {
+    console.log("MongoDB connected");
 
-// Define a simple route
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-app.get("/send", (req, res, next) => {
-  io.emit("message", "new whatsapp msg");
-  res.send("ok");
-});
-
-// Set up Socket.IO event listeners
-io.on("connection", (socket) => {
-  console.log("a user connected");
-  // Event listener for 'message' event
-  socket.on("message", (msg, callback) => {
-    console.log("message received: ", msg);
-    if (msg === "ahmed") {
-      io.emit("message", "yes i'm here");
-    } else {
-      callback("i'm not ahmed");
-    }
-    // Broadcast message to all clients
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error(err.message);
+    process.exit(1);
   });
-
-  // Handle disconnection
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-});
-// Start the server
-server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
