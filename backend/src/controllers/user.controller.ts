@@ -26,13 +26,13 @@ export const registerUser = asyncHandler(
     const { name, email, password } = req.body;
 
     let avatar = "";
-    // if (req.file && req.file.path) {
-    //   avatar = req.file.path;
-    //   const uploadResult = await cloudinary.uploader.upload(avatar);
+    if (req.file && req.file.path) {
+      avatar = req.file.path;
+      const uploadResult = await cloudinary.uploader.upload(avatar);
 
-    //   fs.unlinkSync(avatar);
-    //   avatar = uploadResult.secure_url;
-    // }
+      fs.unlinkSync(avatar);
+      avatar = uploadResult.secure_url;
+    }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
