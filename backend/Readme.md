@@ -1,9 +1,8 @@
-
 # Real-Time Chat Application API
 
 ## Base URL
 
-`http://localhost:5000/api`
+`http://localhost:3000/api`
 
 ## Authentication
 
@@ -14,6 +13,7 @@
 **Description**: Register a new user.
 
 **Request Body**:
+
 ```json
 {
   "name": "string",
@@ -23,6 +23,7 @@
 ```
 
 **Response**:
+
 - **201 Created**:
   ```json
   {
@@ -47,6 +48,7 @@
 **Description**: Authenticate a user and return a JWT token.
 
 **Request Body**:
+
 ```json
 {
   "email": "string",
@@ -55,6 +57,7 @@
 ```
 
 **Response**:
+
 - **200 OK**:
   ```json
   {
@@ -81,11 +84,13 @@
 **Description**: Create a new chat (1v1 or group).
 
 **Request Headers**:
+
 ```
 Authorization: Bearer <token>
 ```
 
 **Request Body**:
+
 ```json
 {
   "users": ["string"],
@@ -96,6 +101,7 @@ Authorization: Bearer <token>
 ```
 
 **Response**:
+
 - **201 Created**:
   ```json
   {
@@ -128,11 +134,13 @@ Authorization: Bearer <token>
 **Description**: Retrieve all chats for the logged-in user.
 
 **Request Headers**:
+
 ```
 Authorization: Bearer <token>
 ```
 
 **Response**:
+
 - **200 OK**:
   ```json
   [
@@ -165,11 +173,13 @@ Authorization: Bearer <token>
 **Description**: Send a new message to a chat.
 
 **Request Headers**:
+
 ```
 Authorization: Bearer <token>
 ```
 
 **Request Body**:
+
 ```json
 {
   "content": "string",
@@ -178,6 +188,7 @@ Authorization: Bearer <token>
 ```
 
 **Response**:
+
 - **201 Created**:
   ```json
   {
@@ -196,11 +207,13 @@ Authorization: Bearer <token>
 **Description**: Retrieve all messages for a specific chat.
 
 **Request Headers**:
+
 ```
 Authorization: Bearer <token>
 ```
 
 **Response**:
+
 - **200 OK**:
   ```json
   [
@@ -223,6 +236,7 @@ Authorization: Bearer <token>
 ### Common Errors
 
 **400 Bad Request**:
+
 ```json
 {
   "success": false,
@@ -231,6 +245,7 @@ Authorization: Bearer <token>
 ```
 
 **401 Unauthorized**:
+
 ```json
 {
   "success": false,
@@ -239,6 +254,7 @@ Authorization: Bearer <token>
 ```
 
 **500 Internal Server Error**:
+
 ```json
 {
   "success": false,

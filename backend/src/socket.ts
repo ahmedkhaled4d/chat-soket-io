@@ -101,12 +101,12 @@ io.on("connection", (socket) => {
       ).includes(room);
     });
 
-    console.log('Room users:', roomUsers);
+    console.log("Room users:", roomUsers);
 
     // Notify users in the room about the new message (excluding the sender)
     roomUsers.forEach((userId) => {
       if (userId !== message.sender._id) {
-        console.log('Notifying user:', userId);
+        console.log("Notifying user:", userId);
         users[userId].forEach((socketId) => {
           io.to(socketId).emit("newMessageNotification", message);
         });
@@ -123,14 +123,16 @@ io.on("connection", (socket) => {
           unreadMessages[userId][room] = 0;
         }
         unreadMessages[userId][room]++;
-        console.log(`Unread messages for user ${userId}:`, unreadMessages[userId]);
+        console.log(
+          `Unread messages for user ${userId}:`,
+          unreadMessages[userId]
+        );
       }
     });
 
     // Emit latest message to all users for updating sidebar
     io.emit("latestMessage", message);
   });
-  
 
   socket.on("disconnect", () => {
     console.log("Client disconnected", socket.id);
