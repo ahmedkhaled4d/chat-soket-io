@@ -1,6 +1,6 @@
-import { Request } from 'express';
+import { Request } from "express";
 import { Document } from "mongoose";
-import Multer from 'multer';
+import Multer from "multer";
 
 export interface IUserDocument extends Document {
   _id: string;
